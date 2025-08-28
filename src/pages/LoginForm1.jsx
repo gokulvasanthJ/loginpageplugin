@@ -5,29 +5,7 @@ import Input from "../components/ui/inputui/Input";
 import Label from "../components/ui/labelui/Label";
 
 const LoginForm1 = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "https://backend.healthflo.in/user/login",
-        { emailId, password }
-      );
-
-      if (response.data.status === 1) {
-        localStorage.setItem("jwt", response.data.jwt);
-        alert("Login Successful");
-      } else {
-        alert("Login Failed");
-      }
-    } catch (error) {
-      console.log("Error during Login:", error);
-      alert("Login Failed");
-    }
-  };
-
+  
   return (
     <>
       <div className="flex items-center justify-center w-screen h-screen bg-gradient-to-l from-teal-600 via-teal-500 to-white p-4">
@@ -50,18 +28,14 @@ const LoginForm1 = () => {
 
             <Label text='Email'></Label>
             <Input
-              onChange={(e) => setEmailId(e.target.value)}
               type="email"
               placeholder="Enter email"
-              value={emailId}
             />
 
             <Label text='Password'>Password</Label>
             <Input
-              onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Enter password"
-              value={password}
             />
             <a href="#" className="text-blue-600 underline flex justify-end mb-2 text-sm">
               Forgot Password
@@ -72,7 +46,6 @@ const LoginForm1 = () => {
               
               text='Login'
               color="teal"
-              onClick={handleSubmit}
             >
               
             </Button>
